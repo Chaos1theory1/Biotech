@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="fr">
+  <head>
+    <title>BiotechAgro | Site officiel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/logo.png" type="image/png" />
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="//fonts.googleapis.com/css?family=Montserrat:300,400,700%7CPoppins:300,400,500,700,900"
+/>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+<link rel="stylesheet" href="css/style.css" />
+
+
+    <style>
+      :root {
+        --biotechagro-green: #2fa35a;
+        --biotechagro-green-dark: #1f7a41;
+        --biotechagro-red: #c0392b;
+        --biotechagro-orange: #d68a00;
+      }
+
+      /* Fond général avec image myciculture (style admin) */
+      body {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.45)),
+          url("images/imagearriereplan.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #222222;
+      }
+
+      /* Barre du haut 100% transparente (ne pas forcer le flex/hauteur ici) */
+      .rd-navbar-main-outer {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+
+      /* GRAND LOGO CENTRÉ (style admin) */
+      .admin-big-logo {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 20;
+      }
+      .admin-big-logo img {
+        max-height: 120px;
+        width: auto;
+        filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.45));
+        background: #ffffff;
+        padding: 10px;
+        border-radius: 50%;
+        border: 4px solid var(--biotechagro-green);
+      }
+
+      /* Barre menu (style admin) */
+      .admin-menu-bar {
+        position: relative;
+        z-index: 20;
+        background: #ffffff;
+        padding: 15px 0;
+        border-bottom: 2px solid #e5e5e5;
+        text-align: center;
+        margin-bottom: 0;
+      }
+      .admin-menu-bar a,
+      .admin-menu-bar span {
+        margin: 0 15px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 13px;
+        text-decoration: none;
+      }
+      .admin-menu-bar a {
+        color: #444444;
+      }
+      .admin-menu-bar a:hover {
+        color: var(--biotechagro-green-dark);
+      }
+      .admin-menu-bar a.active {
+        color: var(--biotechagro-green);
+      }
+
+      /* Boutons - cohérence admin */
+      .button-primary,
+      .btn-primary,
+      .button.button-primary,
+      .button.button-circle,
+      .button.button-primary.button-circle,
+      .button.button-primary.button-lg,
+      .btn-primary-rounded,
+      .footer-classic-subscribe-form .button {
+        background-color: var(--biotechagro-green) !important;
+        border-color: var(--biotechagro-green) !important;
+        color: #ffffff !important;
+      }
+      .button-primary:hover,
+      .btn-primary:hover,
+      .btn-primary-rounded:hover,
+      .footer-classic-subscribe-form .button:hover {
+        background-color: var(--biotechagro-green-dark) !important;
+        border-color: var(--biotechagro-green-dark) !important;
+      }
+
+      /* Lisibilité du menu principal sur fond */
+      .rd-navbar-nav > li > a {
+        color: #ffffff !important;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 13px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+      }
+      .rd-navbar-nav > li:hover > a,
+      .rd-navbar-nav > li.active > a {
+        color: #a8f0c2 !important;
+      }
+
+      /* Décor ABOUT/FEATURES : -10% */
+      .decor-text,
+      .decor-text-1,
+      .decor-text-2 {
+        font-size: 86px !important;
+      }
+      @media (max-width: 991px) {
+        .decor-text,
+        .decor-text-1,
+        .decor-text-2 {
+          font-size: 58px !important;
+        }
+      }
+
+      /* HERO overlay (texte lisible) + "GRANDEUR" ALIGNÉE SUR ADMIN */
+      .main-section {
+        position: relative;
+        overflow: hidden;
+
+        min-height: calc(100vh - 210px); /* header + logo + marges */
+        display: flex;
+        align-items: center;
+
+        padding: 40px 0 60px;
+      }
+
+      @supports (height: 100dvh) {
+        .main-section {
+          min-height: calc(100dvh - 210px);
+        }
+      }
+
+      @media (max-width: 991px) {
+        .main-section {
+          min-height: auto;
+          padding: 30px 0 40px;
+        }
+      }
+
+      .main-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(17, 23, 18, 0.68), rgba(47, 163, 90, 0.22));
+        z-index: 0;
+      }
+      .main-section > .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Slogan / pastille */
+      .decorated-subtitle {
+        background: rgba(0, 0, 0, 0.45);
+        display: inline-block;
+        padding: 8px 18px;
+        border-radius: 999px;
+      }
+      @media (min-width: 768px) {
+        .decorated-subtitle {
+          white-space: nowrap !important;
+          max-width: none !important;
+        }
+      }
+      @media (max-width: 767px) {
+        .decorated-subtitle {
+          white-space: normal !important;
+        }
+      }
+
+      /* Footer simple (admin) */
+      .footer-classic {
+        background-color: #111712;
+        color: #dddddd;
+      }
+      .footer-classic a {
+        color: #38c46c;
+      }
+      .footer-classic a:hover {
+        color: var(--biotechagro-green);
+      }
+
+      /* Garde la largeur du "brand" même si on n'affiche pas le logo */
+      .rd-navbar-brand .brand-placeholder {
+        display: inline-block;
+        width: 46px;
+        height: 46px;
+      }
+
+      /* Petite amélioration espace sections */
+      .section {
+        position: relative;
+      }
+
+      /* ===========================
+         FIX BANNIÈRE RD NAVBAR DÉFORMÉE
+         (sans changer le HTML)
+         =========================== */
+
+      /* 1) Laisse RD Navbar gérer la hauteur (évite la déformation) */
+      .rd-navbar-main-outer {
+        min-height: unset !important;
+        display: block !important;
+        align-items: initial !important;
+      }
+
+      /* 2) Garantir une hauteur cohérente du header */
+      .rd-navbar,
+      .rd-navbar-main {
+        min-height: 90px;
+      }
+
+      /* 3) Éviter l’écrasement en flex (souvent cause de déformation) */
+      .rd-navbar-panel,
+      .rd-navbar-main-element {
+        display: block !important;
+      }
+
+      /* 4) Empêcher les débordements qui “tordent” la bannière */
+      .rd-navbar-wrap,
+      .rd-navbar,
+      .rd-navbar-main,
+      .rd-navbar-main-outer {
+        overflow: visible !important;
+      }
+
+      /* 5) Neutraliser tout fond parasite éventuel sur le header */
+      .section.page-header {
+        background: transparent !important;
+      }
+
+      /* 6) Mobile : hauteur plus stable */
+      @media (max-width: 991px) {
+        .rd-navbar,
+        .rd-navbar-main {
+          min-height: 70px;
+        }
+      }
+
+      /* 7) Si ta “bannière” est une image (section-banner) qui se déforme */
+      .section-banner img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Wordmark BiotechAgro : rendu plus professionnel */
+      .brand-wordmark {
+        display: inline-flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-decoration: none !important;
+        line-height: 1;
+        padding: 3px 0;
+      }
+      .brand-wordmark-main {
+        display: inline-block;
+        font-family: "Montserrat", Arial, sans-serif;
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        text-transform: none;
+        text-shadow: 0 3px 16px rgba(0, 0, 0, 0.55);
+      }
+      .brand-wordmark-bio {
+        color: #ffffff;
+      }
+      .brand-wordmark-agro {
+        color: #38d874;
+        margin-left: 2px;
+      }
+      .brand-wordmark-sub {
+        position: relative;
+        margin-top: 6px;
+        padding-bottom: 5px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #dfffe9;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        opacity: 0.96;
+      }
+      .brand-wordmark-sub::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #38d874 0%, rgba(56, 216, 116, 0.1) 100%);
+      }
+      .brand-wordmark:hover .brand-wordmark-agro {
+        color: #7df5a6;
+      }
+      .brand-text-biotechagro {
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        color: var(--biotechagro-green, #2fa35a);
+        line-height: 1;
+      }
+      @media (max-width: 991px) {
+        .brand-wordmark-main {
+          font-size: 24px;
+        }
+        .brand-wordmark-sub {
+          font-size: 8px;
+          letter-spacing: 0.14em;
+        }
+      }
+      .hero-brand-name { color: #38d874; text-shadow: 0 3px 18px rgba(0, 0, 0, 0.55); }
+      .site-url-biotechagro {
+        font-weight: 700;
+        color: var(--biotechagro-green, #2fa35a);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER NAV PUBLIC (style admin) -->
+    <header class="section page-header">
+      <div class="rd-navbar-wrap">
+        <nav
+          class="rd-navbar rd-navbar-classic"
+          data-layout="rd-navbar-static"
+          data-sm-layout="rd-navbar-static"
+          data-md-layout="rd-navbar-static"
+          data-lg-layout="rd-navbar-static"
+        >
+          <div class="rd-navbar-main-outer">
+            <div class="rd-navbar-main">
+              <div class="rd-navbar-panel">
+                <div class="rd-navbar-brand">
+                  <a class="brand brand-wordmark" href="./" aria-label="BiotechAgro"><span class="brand-wordmark-main"><span class="brand-wordmark-bio">Biotech</span><span class="brand-wordmark-agro">Agro</span></span><span class="brand-wordmark-sub">Myciculture digitale</span></a>
+                </div>
+              </div>
+
+              <div class="rd-navbar-main-element">
+                <div class="rd-navbar-nav-wrap">
+                  <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="./">Accueil</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="a-propos.html">À propos</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="services.html">Produits &amp; Services</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact.html">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- GRAND LOGO CENTRÉ (style admin) -->
+    <div class="admin-big-logo">
+      <img src="images/logo.png" alt="BiotechAgro" />
+    </div>
+
+    <!-- HERO -->
+    <section
+      id="hero"
+      class="section main-section parallax-scene-js"
+      style="background: url('images/fond-silever.png') no-repeat center center; background-size: cover"
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-8 col-12">
+            <div class="main-decorated-box text-center text-xl-left">
+              <h1 class="text-white text-xl-center wow slideInRight hero-title" data-wow-delay=".3s">
+                <span class="hero-line-1 d-block font-weight-semibold"> Startup <span class="hero-brand-name">BiotechAgro</span> </span>
+                <span class="hero-line-1 d-block font-weight-semibold"> Leader Tunisien du Secteur Fongique </span>
+                <span class="hero-line-2 d-block font-weight-bold"> Myciculture Digitale </span>
+              </h1>
+
+              <p class="hero-description text-white wow fadeInUp" data-wow-delay=".6s">
+                BiotechAgro est une startup tunisienne innovante spécialisée en biotechnologie mycologique, dédiée à la
+                digitalisation complète des processus de production, de suivi et de contrôle qualité des cultures
+                fongiques. Nous intégrons des solutions numériques avancées à chaque étape de la chaîne de valeur de la
+                myciculture afin de garantir performance, traçabilité et standardisation industrielle.
+              </p>
+
+              <br />
+
+              <div class="decorated-subtitle text-italic text-white wow slideInLeft">
+                Moins cher, plus frais, qualité certifiée.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 text-center offset-top-75" data-wow-delay=".2s">
+            <a
+              class="button-way-point d-inline-block text-center d-inline-flex flex-column justify-content-center"
+              href="#about"
+              data-custom-scroll-to="about"
+              ><span class="fa-chevron-down"></span
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section class="section section-sm position-relative" id="about">
+      <div class="container">
+        <div class="row row-30">
+          <div class="col-lg-6">
+            <div class="block-decorate-img wow fadeInLeft" data-wow-delay=".2s">
+              <img src="images/home-1-570x703.jpg" alt="Laboratoire BiotechAgro" width="570" height="351" />
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="block-sm offset-top-45">
+              <div class="section-name wow fadeInRight" data-wow-delay=".2s">À propos</div>
+              <h3 class="wow fadeInLeft text-capitalize devider-bottom" data-wow-delay=".3s">
+                Ce que<span class="text-primary"> nous faisons</span>
+              </h3>
+              <p class="offset-xl-40 wow fadeInUp" data-wow-delay=".4s">
+                BiotechAgro développe et produit du mycélium liquide et du spawn (mycélium sur grains) de qualité
+                laboratoire pour les producteurs de champignons frais en Tunisie et en Afrique. Notre procédé fermé,
+                stérile et tracé numériquement garantit des cultures plus stables, plus productives et plus faciles à
+                gérer.
+              </p>
+              <p class="default-letter-spacing font-weight-bold text-gray-dark wow fadeInUp" data-wow-delay=".4s">
+                Notre objectif : rendre la myciculture professionnelle plus accessible, plus rentable et 100&nbsp;%
+                traçable.
+              </p>
+              <a class="button-width-190 button-primary button-circle button-lg button offset-top-30" href="a-propos.html"
+                >En savoir plus</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="decor-text decor-text-1">...........ABOUT</div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section custom-section position-relative section-md" id="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-7 col-lg-7 col-12">
+            <div class="section-name wow fadeInRight">nos atouts</div>
+            <h3 class="text-capitalize devider-left wow fadeInLeft" data-wow-delay=".2s">
+              Pourquoi les producteurs<span class="text-primary"> choisissent BiotechAgro</span>
+            </h3>
+            <p>
+              BiotechAgro combine biotechnologie, contrôle qualité et outils numériques pour offrir une solution complète
+              de production de mycélium adaptée au marché tunisien et africain.
+            </p>
+            <div class="row row-15">
+              <div class="col-xl-6 wow fadeInUp" data-wow-delay=".2s">
+                <div class="box-default">
+                  <div class="box-default-title">Procédé innovant</div>
+                  <p class="box-default-description">
+                    Mycélium liquide &amp; spawn Premium produits en environnement stérile avec suivi digital de chaque
+                    lot.
+                  </p>
+                  <span class="box-default-icon novi-icon icon-lg mercury-icon-lightbulb-gears"></span>
+                </div>
+              </div>
+              <div class="col-xl-6 wow fadeInUp" data-wow-delay=".3s">
+                <div class="box-default">
+                  <div class="box-default-title">Traçabilité par QR code</div>
+                  <p class="box-default-description">
+                    Chaque lot est identifié, suivi et historisé de l’inoculation jusqu’à la livraison.
+                  </p>
+                  <span class="box-default-icon novi-icon icon-lg mercury-icon-target-2"></span>
+                </div>
+              </div>
+              <div class="col-xl-6 wow fadeInUp" data-wow-delay=".4s">
+                <div class="box-default">
+                  <div class="box-default-title">Qualité stable</div>
+                  <p class="box-default-description">
+                    Standardisation des souches et des protocoles pour garantir un rendement constant à chaque cycle.
+                  </p>
+                  <span class="box-default-icon novi-icon icon-lg mercury-icon-user"></span>
+                </div>
+              </div>
+              <div class="col-xl-6 wow fadeInUp" data-wow-delay=".5s">
+                <div class="box-default">
+                  <div class="box-default-title">Support technique</div>
+                  <p class="box-default-description">
+                    Accompagnement des clients dans la mise en place et l’optimisation de leurs unités de culture.
+                  </p>
+                  <span class="box-default-icon novi-icon icon-lg mercury-icon-partners"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-left-side wow slideInRight" data-wow-delay=".5s">
+        <img src="images/home-2-636x480.jpg" alt="Production de mycélium" width="636" height="240" />
+      </div>
+
+      <div class="decor-text decor-text-2 wow fadeInUp" data-wow-delay=".3s">features</div>
+    </section>
+
+    <!-- SECTION PRODUITS -->
+    <section
+      id="produits"
+      class="section section-md bg-xs-overlay"
+      style="background: url('images/bg-image-3-1700x883.png') no-repeat; background-size: cover"
+    >
+      <div class="container">
+        <div class="row row-50 justify-content-center">
+          <div class="col-12 text-center col-md-10 col-lg-8">
+            <div class="section-name wow fadeInRight" data-wow-delay=".2s">Nos produits</div>
+            <h3 class="wow fadeInLeft text-capitalize" data-wow-delay=".3s">
+              Solutions<span class="text-primary"> BiotechAgro</span>
+            </h3>
+            <p>
+              BiotechAgro propose des solutions modulaires pour les fermes de champignons, unités en croissance et projets
+              industriels. Les caractéristiques ci-dessous présentent nos trois produits principaux.
+            </p>
+          </div>
+        </div>
+
+        <div class="row row-30 justify-content-center">
+          <div class="col-xl-4 col-md-6 col-12 wow fadeInDown" data-wow-delay=".3s">
+            <div class="pricing-box bg-gray-dark">
+              <div class="pricing-box-tittle">Mycélium sur grain – Champignon de Paris</div>
+              <p>Format : sac 2,5 kg – Spawn Premium</p>
+              <hr />
+              <div class="pricing-box-inner"><span class="pricing-box-symbol">Usage</span></div>
+              <div class="pricing-box-label bg-gray">PRODUCTION</div>
+              <p>
+                Haute pureté et stabilité <br />
+                Rendement élevé pour cultures contrôlées <br />
+                Colonisation régulière des substrats.
+              </p>
+              <a class="button button-190 button-circle btn-primary-rounded" href="contact.html">demander un devis</a>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 col-12 wow fadeInUp" data-wow-delay=".4s">
+            <div class="pricing-box bg-gray-primary">
+              <div class="pricing-box-tittle">Mycélium sur grain – Pleurote</div>
+              <p>Format : sac 2,5 kg – Spawn Premium</p>
+              <hr />
+              <div class="pricing-box-inner"><span class="pricing-box-symbol">Usage</span></div>
+              <div class="pricing-box-label bg-gray-primary-light">SACS &amp; BLOCS</div>
+              <p>
+                Colonisation très rapide <br />
+                Souche robuste adaptée aux pleurotes gris/bleu <br />
+                Idéal pour sacs et blocs de culture intensifs.
+              </p>
+              <a class="button button-190 button-circle btn-rounded-outline" href="contact.html">demander un devis</a>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 col-12 wow fadeInDown" data-wow-delay=".3s">
+            <div class="pricing-box bg-gray-dark">
+              <div class="pricing-box-tittle">Mycélium liquide (LC)</div>
+              <p>Flacon 1 L – Haute densité cellulaire</p>
+              <hr />
+              <div class="pricing-box-inner"><span class="pricing-box-symbol">Usage</span></div>
+              <div class="pricing-box-label bg-gray">INOCULATION</div>
+              <p>
+                Inoculation rapide des grains et substrats <br />
+                Rendement potentiellement x2 avec protocole adapté <br />
+                Stockage plus long en conditions réfrigérées.
+              </p>
+              <a class="button button-190 button-circle btn-primary-rounded" href="contact.html">demander un devis</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & NORMES -->
+    <section class="section section-md bg-gray-lighten" id="certifications">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-10">
+            <div class="section-name wow fadeInRight text-center" data-wow-delay=".2s">certifications</div>
+            <h3 class="wow fadeInLeft text-capitalize text-center" data-wow-delay=".3s">
+              Normes<span class="text-primary"> et certifications </span>
+            </h3>
+
+            <p class="text-center offset-top-20">
+              BiotechAgro applique des standards internationaux pour garantir un mycélium sûr, stable et conforme
+              aux exigences de la production professionnelle.
+            </p>
+
+            <div class="row row-40 offset-top-40">
+              <div class="col-md-6 col-lg-3 text-center wow fadeInUp" data-wow-delay=".2s">
+                <img src="images/cert-iso22000.png" alt="ISO 22000" width="110" class="mb-3" />
+                <h5 class="text-primary">ISO 22000</h5>
+                <p>Système de management de la sécurité alimentaire appliqué aux lots de mycélium.</p>
+              </div>
+
+              <div class="col-md-6 col-lg-3 text-center wow fadeInUp" data-wow-delay=".3s">
+                <img src="images/cert-iso9001.png" alt="ISO 9001" width="110" class="mb-3" />
+                <h5 class="text-primary">ISO 9001</h5>
+                <p>Standardisation et contrôle qualité du procédé de production BiotechAgro.</p>
+              </div>
+
+              <div class="col-md-6 col-lg-3 text-center wow fadeInUp" data-wow-delay=".4s">
+                <img src="images/cert-haccp.png" alt="HACCP" width="110" class="mb-3" />
+                <h5 class="text-primary">HACCP</h5>
+                <p>Analyse et maîtrise des risques de contamination durant l'incubation.</p>
+              </div>
+
+              <div class="col-md-6 col-lg-3 text-center wow fadeInUp" data-wow-delay=".5s">
+                <img src="images/cert-autoclave.png" alt="Autoclave &amp; filtres" width="110" class="mb-3" />
+                <h5 class="text-primary">Matériel certifié</h5>
+                <p>Autoclaves CE, filtres 0.22 µm et consommables conformes aux normes biotech.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- FOOTER SIMPLE (admin) -->
+    <footer class="section footer-classic section-sm">
+      <div class="container">
+        <p class="rights text-center">© BiotechAgro – www.BiotechAgro.com</p>
+      </div>
+    </footer>
+
+    <!-- JS du template -->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="fr">
+  <head>
+    <title>BiotechAgro | À propos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="images/logo.png" type="image/png" />
+
+    <!-- Fonts & CSS template -->
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Montserrat:300,400,700%7CPoppins:300,400,500,700,900"
+    />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      :root {
+        --biotechagro-green: #2fa35a;
+        --biotechagro-green-dark: #1f7a41;
+        --biotechagro-red: #c0392b;
+        --biotechagro-orange: #d68a00;
+      }
+
+      /* Fond général (même que Accueil) */
+      body {
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.25),
+            rgba(255, 255, 255, 0.45)
+          ),
+          url("images/imagearriereplan.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #222222;
+      }
+
+      /* Barre du haut 100% transparente (même que Accueil) */
+      .rd-navbar-main-outer {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+
+      /* GRAND LOGO CENTRÉ (même que Accueil) */
+      .admin-big-logo {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 20;
+      }
+      .admin-big-logo img {
+        max-height: 120px;
+        width: auto;
+        filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.45));
+        background: #ffffff;
+        padding: 10px;
+        border-radius: 50%;
+        border: 4px solid var(--biotechagro-green);
+      }
+
+      /* Lisibilité menu principal sur fond */
+      .rd-navbar-nav > li > a {
+        color: #ffffff !important;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 13px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+      }
+      .rd-navbar-nav > li:hover > a,
+      .rd-navbar-nav > li.active > a {
+        color: #a8f0c2 !important;
+      }
+
+      /* Boutons cohérents */
+      .button-primary,
+      .btn-primary,
+      .button.button-primary,
+      .button.button-circle,
+      .button.button-primary.button-circle,
+      .button.button-primary.button-lg,
+      .btn-primary-rounded,
+      .footer-classic-subscribe-form .button {
+        background-color: var(--biotechagro-green) !important;
+        border-color: var(--biotechagro-green) !important;
+        color: #ffffff !important;
+      }
+      .button-primary:hover,
+      .btn-primary:hover,
+      .btn-primary-rounded:hover,
+      .footer-classic-subscribe-form .button:hover {
+        background-color: var(--biotechagro-green-dark) !important;
+        border-color: var(--biotechagro-green-dark) !important;
+      }
+
+      /* Texte primary */
+      .text-primary {
+        color: var(--biotechagro-green) !important;
+      }
+
+      /* HERO overlay (même logique que Accueil) */
+      .main-section {
+        position: relative;
+        overflow: hidden;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        padding: 90px 0 70px;
+      }
+      .main-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(17, 23, 18, 0.70),
+          rgba(47, 163, 90, 0.22)
+        );
+        z-index: 0;
+      }
+      .main-section > .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Pastille slogan */
+      .decorated-subtitle {
+        background: rgba(0, 0, 0, 0.45);
+        display: inline-block;
+        padding: 8px 18px;
+        border-radius: 999px;
+      }
+      @media (min-width: 768px) {
+        .decorated-subtitle {
+          white-space: nowrap !important;
+          max-width: none !important;
+        }
+      }
+      @media (max-width: 767px) {
+        .decorated-subtitle {
+          white-space: normal !important;
+        }
+      }
+
+      /* Progress bars - vert BiotechAgro */
+      .progress-bar-linear-wrap {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+      .progress-bar-linear {
+        background-color: var(--biotechagro-green) !important;
+      }
+
+      /* Boxes / icones (section normes) */
+      .box-minimal-icon {
+        color: var(--biotechagro-green) !important;
+      }
+
+      /* Déviders du template */
+      .devider-left:before,
+      .devider-bottom:after {
+        background-color: var(--biotechagro-green) !important;
+      }
+
+      /* Footer simple (même que Accueil/admin) */
+      .footer-classic {
+        background-color: #111712;
+        color: #dddddd;
+      }
+      .footer-classic a {
+        color: #38c46c;
+      }
+      .footer-classic a:hover {
+        color: var(--biotechagro-green);
+      }
+
+      /* Petites améliorations lisibilité sections (sur fond) */
+      .section.bg-gray-lighten,
+      .bg-gray-lighten {
+        background: rgba(255, 255, 255, 0.88) !important;
+      }
+
+      /* Cartes/blocks sur fond : léger blanc */
+      .team-classic-wrap,
+      .box-minimal,
+      .block-sm,
+      .block-320,
+      .pricing-box,
+      .rd-mailform,
+      .footer-classic .container {
+        border-radius: 14px;
+      }
+
+      .team-classic-img {
+        height: 397px;
+        border-radius: 12px;
+        background: #f7f7f7;
+      }
+      .team-classic-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .team-role-biotechagro {
+        display: block;
+        color: #2fa35a;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 12px;
+      }
+
+      /* Wordmark BiotechAgro : rendu plus professionnel */
+      .brand-wordmark {
+        display: inline-flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-decoration: none !important;
+        line-height: 1;
+        padding: 3px 0;
+      }
+      .brand-wordmark-main {
+        display: inline-block;
+        font-family: "Montserrat", Arial, sans-serif;
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        text-transform: none;
+        text-shadow: 0 3px 16px rgba(0, 0, 0, 0.55);
+      }
+      .brand-wordmark-bio {
+        color: #ffffff;
+      }
+      .brand-wordmark-agro {
+        color: #38d874;
+        margin-left: 2px;
+      }
+      .brand-wordmark-sub {
+        position: relative;
+        margin-top: 6px;
+        padding-bottom: 5px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #dfffe9;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        opacity: 0.96;
+      }
+      .brand-wordmark-sub::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #38d874 0%, rgba(56, 216, 116, 0.1) 100%);
+      }
+      .brand-wordmark:hover .brand-wordmark-agro {
+        color: #7df5a6;
+      }
+      .brand-text-biotechagro {
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        color: var(--biotechagro-green, #2fa35a);
+        line-height: 1;
+      }
+      @media (max-width: 991px) {
+        .brand-wordmark-main {
+          font-size: 24px;
+        }
+        .brand-wordmark-sub {
+          font-size: 8px;
+          letter-spacing: 0.14em;
+        }
+      }
+      .site-url-biotechagro {
+        font-weight: 700;
+        color: var(--biotechagro-green, #2fa35a);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER NAV (même que Accueil) -->
+    <header class="section page-header">
+      <div class="rd-navbar-wrap">
+        <nav
+          class="rd-navbar rd-navbar-classic"
+          data-layout="rd-navbar-static"
+          data-sm-layout="rd-navbar-static"
+          data-md-layout="rd-navbar-static"
+          data-lg-layout="rd-navbar-static"
+        >
+          <div class="rd-navbar-main-outer">
+            <div class="rd-navbar-main">
+              <div class="rd-navbar-panel">
+                <div class="rd-navbar-brand">
+                  <a class="brand brand-wordmark" href="./" aria-label="BiotechAgro"><span class="brand-wordmark-main"><span class="brand-wordmark-bio">Biotech</span><span class="brand-wordmark-agro">Agro</span></span><span class="brand-wordmark-sub">Myciculture digitale</span></a>
+                </div>
+              </div>
+
+              <div class="rd-navbar-main-element">
+                <div class="rd-navbar-nav-wrap">
+                  <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="./">Accueil</a></li>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="a-propos.html">À propos</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="services.html">Produits &amp; Services</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact.html">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- GRAND LOGO CENTRÉ (même que Accueil) -->
+    <div class="admin-big-logo">
+      <img src="images/logo.png" alt="BiotechAgro" />
+    </div>
+
+    <!-- HERO ABOUT (même style que Accueil) -->
+    <section
+      class="section main-section"
+      style="
+        background: url('images/fond-silever.png') no-repeat center center;
+        background-size: cover;
+      "
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-9 col-12">
+            <div class="main-decorated-box text-center">
+              <h1 class="text-white wow slideInRight" data-wow-delay=".2s" style="margin-bottom: 18px;">
+                À propos de <span class="text-white">BiotechAgro</span>
+              </h1>
+
+              <p class="text-white wow fadeInUp" data-wow-delay=".35s" style="font-size: 18px; opacity: 0.95;">
+                Startup tunisienne spécialisée dans la biotechnologie fongique, produisant du mycélium liquide stérile
+                et du spawn Premium destinés aux producteurs professionnels de champignons comestibles.
+              </p>
+
+              <p class="text-white wow fadeInUp" data-wow-delay=".45s" style="font-size: 17px; opacity: 0.92;">
+                Première entreprise de ce type en Tunisie, BiotechAgro apporte une avance structurelle au secteur
+                fongique grâce à une traçabilité digitale et un contrôle qualité intégrés.
+              </p>
+
+              <div class="decorated-subtitle text-italic text-white wow slideInLeft" data-wow-delay=".55s">
+                Moins cher, plus frais, qualité certifiée.
+              </div>
+
+              <div class="offset-top-30">
+                <a
+                  class="button button-primary button-circle button-lg"
+                  href="#about"
+                  data-custom-scroll-to="about"
+                >
+                  Découvrir
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 text-center offset-top-60" data-wow-delay=".2s">
+            <a
+              class="button-way-point d-inline-block text-center d-inline-flex flex-column justify-content-center"
+              href="#about"
+              data-custom-scroll-to="about"
+              ><span class="fa-chevron-down"></span
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION À PROPOS -->
+    <section class="section section-md bg-gray-lighten" id="about">
+      <div class="container">
+        <div class="row row-40 justify-content-center align-items-center">
+          <div class="col-lg-6 col-12">
+            <div class="offset-top-15 offset-lg-right-45">
+              <div class="section-name wow fadeInRight" data-wow-delay=".2s">Qui sommes-nous ?</div>
+              <h3 class="wow fadeInLeft text-capitalize devider-bottom" data-wow-delay=".3s">
+                Quelques mots <span class="text-primary">sur BiotechAgro</span>
+              </h3>
+
+              <p class="font-weight-bold text-gray-dark wow fadeInUp" data-wow-delay=".35s">
+                BiotechAgro développe et produit du mycélium liquide et du spawn (mycélium sur grains)
+                pour les producteurs de champignons en Tunisie et en Afrique.
+              </p>
+
+              <p class="wow fadeInUp" data-wow-delay=".4s">
+                Nous combinons un procédé de production fermé (autoclaves, environnement stérile, suivi des lots)
+                avec une plateforme digitale interne qui trace chaque étape : souche, mycélium liquide, mycélium sur grain,
+                jusqu’au client final.
+              </p>
+
+              <p class="wow fadeInUp" data-wow-delay=".45s">
+                BiotechAgro s’adresse aux cultivateurs professionnels, aux unités agricoles et aux partenaires de distribution
+                qui souhaitent sécuriser leur approvisionnement en spawn local, stable et conforme aux standards internationaux.
+              </p>
+
+              <div class="offset-top-20">
+                <article class="progress-linear wow fadeInUp" data-wow-delay=".2s">
+                  <div class="progress-header progress-header-simple">
+                    <p>Production biotech & stérilisation</p>
+                    <span class="progress-value">90</span>
+                  </div>
+                  <div class="progress-bar-linear-wrap">
+                    <div class="progress-bar-linear"></div>
+                  </div>
+                </article>
+
+                <article class="progress-linear wow fadeInUp" data-wow-delay=".3s">
+                  <div class="progress-header progress-header-simple">
+                    <p>Traçabilité digitale & suivi des lots</p>
+                    <span class="progress-value">95</span>
+                  </div>
+                  <div class="progress-bar-linear-wrap">
+                    <div class="progress-bar-linear"></div>
+                  </div>
+                </article>
+
+                <article class="progress-linear wow fadeInUp" data-wow-delay=".4s">
+                  <div class="progress-header progress-header-simple">
+                    <p>Accompagnement des producteurs</p>
+                    <span class="progress-value">85</span>
+                  </div>
+                  <div class="progress-bar-linear-wrap">
+                    <div class="progress-bar-linear"></div>
+                  </div>
+                </article>
+              </div>
+
+              <a
+                class="button-width-190 button-primary button-circle button-lg button offset-top-30"
+                href="contact.html"
+              >
+                Nous contacter
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-sm-10 col-12">
+            <div class="block-decorate-img wow fadeInLeft" data-wow-delay=".2s">
+              <img
+                src="images/about-biotechagro-1-570x703.png"
+                alt="Unité BiotechAgro"
+                width="570"
+                height="351"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTRE ÉQUIPE -->
+    <section class="section section-md">
+      <div class="container">
+        <div class="row row-50 justify-content-center">
+          <div class="col-md col-12 text-center">
+            <div class="section-name wow fadeInRight" data-wow-delay=".2s">
+              Les personnes derrière BiotechAgro
+            </div>
+            <h3 class="wow fadeInLeft text-capitalize" data-wow-delay=".3s">
+              Rencontrez <span class="text-primary">l’équipe</span>
+            </h3>
+            <p class="block-675">
+              BiotechAgro réunit des compétences en systèmes d’information, réseaux informatiques,
+              biotechnologie et contrôle qualité pour construire une filière spawn moderne et traçable en Tunisie.
+            </p>
+          </div>
+        </div>
+
+        <div class="row row-50 justify-content-center">
+          <!-- Membre 1 -->
+          <div class="col-xl-4 col-sm-6 col-10 wow fadeInLeft" data-wow-delay=".2s">
+            <div class="team-classic-wrap" style="background: rgba(255,255,255,0.92); padding: 12px;">
+              <div class="team-classic-img">
+                <img
+                  src="images/team-basly-1-370x397.png"
+                  alt="Ali Basly"
+                  width="370"
+                  height="397"
+                />
+              </div>
+              <div class="block-320 text-center">
+                <h4 class="font-weight-bold">Ali Basly</h4>
+                <span class="d-block">Fondateur & analyste en systèmes d’information | Banquier (10 ans d’expérience)</span>
+                <p>
+                
+
+Concepteur de la plateforme interne BiotechAgro dédiée à la digitalisation des protocoles biologiques, à la traçabilité des lots et au contrôle qualité.
+
+Responsable des études de marché, du business plan, des protocoles de production et du développement du site et de l’application interne.
+                </p>
+                <hr class="offset-top-40" />
+                <ul class="justify-content-center social-links offset-top-30">
+                  <li><a class="fa fa-linkedin" href="#"></a></li>
+                  <li><a class="fa fa-twitter" href="#"></a></li>
+                  <li><a class="fa fa-facebook" href="#"></a></li>
+                  <li><a class="fa fa-instagram" href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Membre 2 -->
+          <div class="col-xl-4 col-sm-6 col-10 wow fadeInRight" data-wow-delay=".3s">
+            <div class="team-classic-wrap" style="background: rgba(255,255,255,0.92); padding: 12px;">
+              <div class="team-classic-img">
+                <img
+                  src="images/team-alaa-1-370x397.png"
+                  alt="Alaa - Cofondateur et investisseur BiotechAgro"
+                  width="370"
+                  height="397"
+                />
+              </div>
+              <div class="block-320 text-center">
+                <h4 class="font-weight-bold">Alaa</h4>
+                <span class="team-role-biotechagro">Cofondateur &amp; investisseur</span>
+                <p>
+                  Partenaire stratégique de BiotechAgro, engagé dans le développement du projet,
+                  le soutien à l’investissement et la structuration de la croissance commerciale.
+                </p>
+                <hr class="offset-top-40" />
+                <ul class="justify-content-center social-links offset-top-30">
+                  <li><a class="fa fa-linkedin" href="#"></a></li>
+                  <li><a class="fa fa-twitter" href="#"></a></li>
+                  <li><a class="fa fa-facebook" href="#"></a></li>
+                  <li><a class="fa fa-instagram" href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+      
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & NORMES -->
+    <section class="section section-md bg-gray-lighten">
+      <div class="container">
+        <div class="row row-50 justify-content-center text-center">
+          <div class="col-12">
+            <div class="section-name wow fadeInRight" data-wow-delay=".2s">Certifications & normes</div>
+            <h3 class="wow fadeInLeft text-capitalize" data-wow-delay=".3s">
+              Notre <span class="text-primary">référentiel qualité</span>
+            </h3>
+            <p class="block-675">
+              BiotechAgro s’appuie sur des référentiels qualité reconnus pour organiser la production,
+              la stérilisation et la traçabilité digitale des lots.
+            </p>
+          </div>
+        </div>
+
+        <div class="row row-40 justify-content-center">
+          <div class="col-md-4 col-sm-6 col-12 wow fadeInUp" data-wow-delay=".2s">
+            <div class="box-minimal" style="background: rgba(255,255,255,0.92); padding: 18px;">
+              <div class="box-minimal-icon fa fa-check-circle"></div>
+              <h4 class="box-minimal-title">Bonnes pratiques d’hygiène (HACCP)</h4>
+              <p>
+                Analyse des risques, maîtrise des points critiques et procédures d’hygiène strictes pour limiter au maximum
+                les contaminations lors de la préparation, incubation et conditionnement.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12 wow fadeInUp" data-wow-delay=".3s">
+            <div class="box-minimal" style="background: rgba(255,255,255,0.92); padding: 18px;">
+              <div class="box-minimal-icon fa fa-flask"></div>
+              <h4 class="box-minimal-title">Bonnes pratiques de laboratoire (BPL)</h4>
+              <p>
+                Travail en environnement stérile, utilisation d’autoclaves, contrôle des cycles de stérilisation et
+                traçabilité des opérations critiques sur chaque lot.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12 wow fadeInUp" data-wow-delay=".4s">
+            <div class="box-minimal" style="background: rgba(255,255,255,0.92); padding: 18px;">
+              <div class="box-minimal-icon fa fa-database"></div>
+              <h4 class="box-minimal-title">Traçabilité digitale interne & externe</h4>
+              <p>Chaque lot BiotechAgro est suivi numériquement et identifié par un QR code,
+                 permettant l’accès aux informations de production,
+                 de contrôle qualité et de conformité du produit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section
+      class="section section-md"
+      style="
+        background: url(images/bg-image-basly-4-1700x394.jpg) no-repeat;
+        background-size: cover;
+      "
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-12 text-center">
+            <span class="text-white d-block cta-big-text font-weight-medium">
+              Des questions sur BiotechAgro ?
+            </span>
+            <h2 class="text-white">
+              <span class="d-block">
+                Contactez-nous au
+                <a class="underline-link" href="tel:+21699564060">+216 99 564 060</a>
+              </span>
+            </h2>
+            <p class="text-white">
+              Notre équipe est disponible pour discuter de vos besoins en spawn, mycélium liquide et solutions de traçabilité
+              pour votre unité de production.
+            </p>
+            <a class="button button-primary button-circle button-lg button-width-210" href="contact.html">
+              Nous contacter
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER SIMPLE (même que Accueil) -->
+    <footer class="section footer-classic section-sm">
+      <div class="container">
+        <p class="rights text-center">© BiotechAgro – www.BiotechAgro.com</p>
+      </div>
+    </footer>
+
+    <!-- JS du template -->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

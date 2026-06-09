@@ -1,0 +1,8 @@
+{
+  "useSmtp": false,
+  "host": "smtp.gmail.com",
+  "port": 465,
+  "username": "biotechagro.digital@gmail.com",
+  "password": "A_COMPLETER_SI_SMTP_ACTIVE",
+  "recipientEmail": "biotechagro.digital@gmail.com"
+}
