@@ -28,18 +28,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Admin Login</title>
-    <style>body{font-family:Arial;padding:30px}form{max-width:360px}input{display:block;margin:8px 0;padding:8px;width:100%} .err{color:#b00}</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Site Admin Login</h2>
-    <?php if ($error): ?><div class="err"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
-    <form method="post" action="">
-        <label>Username</label>
-        <input type="text" name="username" required autofocus>
-        <label>Password</label>
-        <input type="password" name="password" required>
-        <button type="submit">Login</button>
-    </form>
-    <p>Default credentials: <strong>admin</strong> / <strong>admin123</strong>. Change in <em>admin/config.php</em>.</p>
+    <div class="login-frame">
+        <h2>Site Admin Login</h2>
+        <?php if ($error): ?><div class="message-error"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
+        <form method="post" action="">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <button class="button" type="submit">Login</button>
+        </form>
+        <p class="login-note">Default credentials: <strong>admin</strong> / <strong>admin123</strong>. Change in <em>admin/config.php</em>.</p>
+    </div>
 </body>
 </html>

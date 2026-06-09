@@ -1099,4 +1099,41 @@ for (i = 0; i < plugins.selectFilter.length; i++) {
 			}
 		}
 	});
-}());
+
+    // Site analytics tracking for admin dashboard
+    function sendAdminTrackingEvent(type, label) {
+        if (!window.jQuery) {
+            return;
+        }
+
+        var payload = {
+            type: type,
+            page: window.location.pathname,
+            label: label || ''
+        };
+
+        $.ajax({
+            url: 'admin/track.php',
+            method: 'POST',
+            data: payload,
+            dataType: 'json'
+        });
+    }
+
+    if (window.location.protocol.indexOf('http') === 0) {
+        sendAdminTrackingEvent('visit', '');
+
+        document.body.addEventListener('click', function (event) {
+            var target = event.target;
+            while (target && target !== document.body) {
+                if (target.tagName === 'A') {
+                    var href = target.getAttribute('href') || '';
+                    var linkText = target.textContent.trim() || href;
+                    var eventType = /facebook\.com|twitter\.com|whatsapp\.com|mailto:|tel:/i.test(href) ? 'share' : 'click';
+                    sendAdminTrackingEvent(eventType, linkText);
+                    break;
+                }
+                target = target.parentNode;
+            }
+        }, true);
+    }

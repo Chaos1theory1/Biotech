@@ -41,17 +41,34 @@ $current = file_get_contents($path);
 <head>
     <meta charset="utf-8">
     <title>Editing <?php echo htmlspecialchars($file); ?></title>
-    <style>body{font-family:Arial;padding:12px}textarea{width:100%;height:60vh;font-family:monospace}</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p><a href="index.php">← Dashboard</a> | <a href="logout.php">Logout</a></p>
-    <h3>Editing: <?php echo htmlspecialchars($file); ?></h3>
-    <?php if ($error): ?><div style="color:#b00"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
-    <?php if ($success): ?><div style="color:#080"><?php echo htmlspecialchars($success); ?></div><?php endif; ?>
-    <form method="post">
-        <input type="hidden" name="csrf" value="<?php echo htmlspecialchars(csrf_token()); ?>">
-        <textarea name="content"><?php echo htmlspecialchars($current); ?></textarea>
-        <button type="submit">Save</button>
-    </form>
+<div class="page-shell">
+    <div class="header-row">
+        <div>
+            <h1>Editing <?php echo htmlspecialchars($file); ?></h1>
+            <p>Update visible text on your site pages and save live changes.</p>
+        </div>
+        <div>
+            <a class="button secondary" href="index.php">Back to dashboard</a>
+            <a class="button secondary" href="logout.php">Logout</a>
+        </div>
+    </div>
+
+    <?php if ($error): ?><div class="message-error"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
+    <?php if ($success): ?><div class="message-success"><?php echo htmlspecialchars($success); ?></div><?php endif; ?>
+
+    <div class="site-card">
+        <form method="post">
+            <input type="hidden" name="csrf" value="<?php echo htmlspecialchars(csrf_token()); ?>">
+            <div class="form-group">
+                <label>Page content</label>
+                <textarea name="content"><?php echo htmlspecialchars($current); ?></textarea>
+            </div>
+            <button class="button" type="submit">Save changes</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

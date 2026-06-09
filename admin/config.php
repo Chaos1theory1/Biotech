@@ -16,6 +16,75 @@ $ALLOWED_FILES = [
     'a-propos.html'
 ];
 
+// Location for site visit/click/share statistics
+$STATS_FILE = $BASE_DIR . 'admin' . DIRECTORY_SEPARATOR . 'data.json';
+
+// Image upload settings
+$IMAGE_DIR = $BASE_DIR . 'images' . DIRECTORY_SEPARATOR;
+$ALLOWED_IMAGE_EXTENSIONS = [ 'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg' ];
+$MAX_UPLOAD_SIZE = 5 * 1024 * 1024; // 5 MB
+
+function stats_path() {
+    global $STATS_FILE;
+    return $STATS_FILE;
+}
+
+function ensure_stats_file() {
+    if (!file_exists(stats_path())) {
+        $default = [
+            'visits' => 0,
+            'clicks' => 0,
+            'shares' => 0,
+            'pageViews' => [],
+            'clicksByLabel' => [],
+            'sharesByLabel' => [],
+            'recentEvents' => []
+        ];
+        file_put_contents(stats_path(), json_encode($default, JSON_PRETTY_PRINT));
+    }
+}
+
+function load_stats() {
+    ensure_stats_file();
+    $json = file_get_contents(stats_path());
+    $data = json_decode($json, true);
+    if (!is_array($data)) {
+        $data = [
+            'visits' => 0,
+            'clicks' => 0,
+            'shares' => 0,
+            'pageViews' => [],
+            'clicksByLabel' => [],
+            'sharesByLabel' => [],
+            'recentEvents' => []
+        ];
+    }
+    return $data;
+}
+
+function save_stats($data) {
+    file_put_contents(stats_path(), json_encode($data, JSON_PRETTY_PRINT));
+}
+
+function image_dir_path() {
+    global $IMAGE_DIR;
+    return $IMAGE_DIR;
+}
+
+function allowed_image_extension($name) {
+    global $ALLOWED_IMAGE_EXTENSIONS;
+    $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+    return in_array($ext, $ALLOWED_IMAGE_EXTENSIONS, true);
+}
+
+function sanitize_image_filename($file) {
+    return preg_replace('/[^a-zA-Z0-9._-]/', '_', basename($file));
+}
+
+function relative_image_url($file) {
+    return 'images/' . basename($file);
+}
+
 function is_logged_in() {
     return !empty($_SESSION['admin_logged']) && $_SESSION['admin_logged'] === true;
 }
